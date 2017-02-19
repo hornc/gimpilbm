@@ -38,9 +38,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeIncludeSearchPath>c:\sysgcc\mingw64\include\c++\4.7.1;c:\sysgcc\mingw64\include\c++\4.7.1\x86_64-w64-mingw32;c:\sysgcc\mingw64\include\c++\4.7.1\backward;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include-fixed;c:\sysgcc\mingw64\x86_64-w64-mingw32\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>C:\msys64\mingw64\include;C:\msys64\mingw64\include\glib-2.0;C:\msys64\mingw64\include\gtk-2.0;C:\msys64\mingw64\lib\glib-2.0\include;C:\msys64\home\midwa\prefix\include\gimp-2.0;C:\msys64\home\midwa\prefix\include\gegl-0.3;C:\msys64\home\midwa\prefix\include\babl-0.1;C:\msys64\mingw64\include\cairo;C:\msys64\mingw64\include\gdk-pixbuf-2.0;C:\msys64\mingw64\lib\gtk-2.0\include;C:\msys64\mingw64\include\atk-1.0;C:\msys64\mingw64\include\pango-1.0;c:\sysgcc\mingw64\include\c++\4.7.1;c:\sysgcc\mingw64\include\c++\4.7.1\x86_64-w64-mingw32;c:\sysgcc\mingw64\include\c++\4.7.1\backward;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include-fixed;c:\sysgcc\mingw64\x86_64-w64-mingw32\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
-    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
@@ -48,11 +47,11 @@
     <IncludePath />
     <ReferencePath />
     <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeIncludeSearchPath>c:\sysgcc\mingw64\include\c++\4.7.1;c:\sysgcc\mingw64\include\c++\4.7.1\x86_64-w64-mingw32;c:\sysgcc\mingw64\include\c++\4.7.1\backward;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include-fixed;c:\sysgcc\mingw64\x86_64-w64-mingw32\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>C:\msys64\mingw64\include;C:\msys64\mingw64\include\glib-2.0;C:\msys64\mingw64\include\gtk-2.0;C:\msys64\mingw64\lib\glib-2.0\include;C:\msys64\home\midwa\prefix\include\gimp-2.0;C:\msys64\home\midwa\prefix\include\gegl-0.3;C:\msys64\home\midwa\prefix\include\babl-0.1;C:\msys64\mingw64\include\cairo;C:\msys64\mingw64\include\gdk-pixbuf-2.0;C:\msys64\mingw64\lib\gtk-2.0\include;C:\msys64\mingw64\include\atk-1.0;C:\msys64\mingw64\include\pango-1.0;c:\sysgcc\mingw64\include\c++\4.7.1;c:\sysgcc\mingw64\include\c++\4.7.1\x86_64-w64-mingw32;c:\sysgcc\mingw64\include\c++\4.7.1\backward;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include;c:\sysgcc\mingw64\lib\gcc\x86_64-w64-mingw32\4.7.1\include-fixed;c:\sysgcc\mingw64\x86_64-w64-mingw32\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
-    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
@@ -60,18 +59,34 @@
     <IncludePath />
     <ReferencePath />
     <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="GimpILBM.c" />
-  </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />
     <None Include="GimpILBM-Debug.vgdbsettings" />
     <None Include="GimpILBM-Release.vgdbsettings" />
     <None Include="Makefile" />
     <None Include="release.mak" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\byterun1.h" />
+    <ClInclude Include="..\..\grayscale.h" />
+    <ClInclude Include="..\..\gui.h" />
+    <ClInclude Include="..\..\hamehb.h" />
+    <ClInclude Include="..\..\iff.h" />
+    <ClInclude Include="..\..\ilbm.h" />
+    <ClInclude Include="..\..\plugin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\byterun1.c" />
+    <ClCompile Include="..\..\grayscale.c" />
+    <ClCompile Include="..\..\gui.c" />
+    <ClCompile Include="..\..\hamehb.c" />
+    <ClCompile Include="..\..\iff.c" />
+    <ClCompile Include="..\..\ilbm.c" />
+    <ClCompile Include="..\..\plugin.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
