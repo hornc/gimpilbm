@@ -1,0 +1,39 @@
+#
+# Initial attempt and hand-writing a Makefile to build "gimpilbm".
+#
+# Windows version - produces an .exe instead of .so
+#
+
+GIMPTOOL="gimptool-2.0"
+
+CFLAGS=`$(GIMPTOOL) --cflags` -Wall -Wextra -pedantic -DDEBUGLEVEL=0
+LDFLAGS=`$(GIMPTOOL) --libs`
+
+# --------------------------------------------------------------------------
+
+.PHONY:		clean install
+
+gimpilbm.exe:	byterun1.o grayscale.o gui.o hamehb.o iff.o ilbm.o plugin.o
+		$(CC) -o $@ $^ $(LDFLAGS)
+
+byterun1.o:	byterun1.c byterun1.h
+
+grayscale.o:	grayscale.c grayscale.h
+
+gui.o:		gui.c gui.h
+
+hamehb.o:	hamehb.c hamehb.h
+
+iff.o:		iff.c iff.h
+
+ilbm.o:		ilbm.c ilbm.h
+
+plugin.o:	plugin.c plugin.h
+
+# --------------------------------------------------------------------------
+
+clean:
+		rm -f *.exe *.o
+
+install:	gimpilbm.exe
+		$(GIMPTOOL) --install-bin $^
