@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -61,7 +69,38 @@
     <LibraryPath />
     <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <Toolchain>C:\SysGCC\mingw64</Toolchain>
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <Toolchain>C:\SysGCC\mingw64</Toolchain>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:/SysGCC/mingw64/x86_64-w64-mingw32/include;C:/msys64/home/midwa/prefix/include/gimp-2.0;C:/msys64/home/midwa/prefix/include/gegl-0.3;C:/msys64/home/midwa/prefix/include/babl-0.1;C:/msys64/mingw64/include/gtk-2.0;C:/msys64/mingw64/lib/gtk-2.0/include;C:/msys64/mingw64/include;C:/msys64/mingw64/include/glib-2.0;C:/msys64/mingw64/lib/glib-2.0/include;C:/msys64/mingw64/include/gtk-2.0;C:/msys64/mingw64/include/cairo;C:/msys64/mingw64/include/gdk-pixbuf-2.0;C:/msys64/mingw64/include/atk-1.0;C:/msys64/mingw64/include/pango-1.0;C:/msys64/mingw64/include/json-glib-1.0;C:/msys64/mingw64/include/gio-win32-2.0;C:/msys64/mingw64/include/pixman-1;C:/msys64/mingw64/include/freetype2;C:/msys64/mingw64/include/libpng16;C:/msys64/mingw64/include/harfbuzz;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>C99</CLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LinkerScript />
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>C:/msys64/home/midwa/prefix/lib;C:/msys64/mingw64/lib;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>gimpui-2.0;gimpwidgets-2.0;gimpmodule-2.0;gimp-2.0;gimpmath-2.0;gimpconfig-2.0;gimpcolor-2.0;gimpbase-2.0;gegl-0.3;gegl-npd-0.3;gmodule-2.0 -pthread;json-glib-1.0;gio-2.0;gmodule-2.0 -pthread;babl-0.1;gtk-win32-2.0;gdk-win32-2.0;gdi32;imm32;shell32;ole32 -Wl,-luuid;pangowin32-1.0;pangocairo-1.0;pango-1.0;atk-1.0;cairo;gdk_pixbuf-2.0;gio-2.0;gobject-2.0;glib-2.0;intl;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:/SysGCC/mingw64/x86_64-w64-mingw32/include;C:/msys64/home/midwa/prefix/include/gimp-2.0;C:/msys64/home/midwa/prefix/include/gegl-0.3;C:/msys64/home/midwa/prefix/include/babl-0.1;C:/msys64/mingw64/include/gtk-2.0;C:/msys64/mingw64/lib/gtk-2.0/include;C:/msys64/mingw64/include;C:/msys64/mingw64/include/glib-2.0;C:/msys64/mingw64/lib/glib-2.0/include;C:/msys64/mingw64/include/gtk-2.0;C:/msys64/mingw64/include/cairo;C:/msys64/mingw64/include/gdk-pixbuf-2.0;C:/msys64/mingw64/include/atk-1.0;C:/msys64/mingw64/include/pango-1.0;C:/msys64/mingw64/include/json-glib-1.0;C:/msys64/mingw64/include/gio-win32-2.0;C:/msys64/mingw64/include/pixman-1;C:/msys64/mingw64/include/freetype2;C:/msys64/mingw64/include/libpng16;C:/msys64/mingw64/include/harfbuzz;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;DEBUGLEVEL=0;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>C99</CLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LinkerScript />
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>C:/msys64/home/midwa/prefix/lib;C:/msys64/mingw64/lib;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>gimpui-2.0;gimpwidgets-2.0;gimpmodule-2.0;gimp-2.0;gimpmath-2.0;gimpconfig-2.0;gimpcolor-2.0;gimpbase-2.0;gegl-0.3;gegl-npd-0.3;gmodule-2.0 -pthread;json-glib-1.0;gio-2.0;gmodule-2.0 -pthread;babl-0.1;gtk-win32-2.0;gdk-win32-2.0;gdi32;imm32;shell32;ole32 -Wl,-luuid;pangowin32-1.0;pangocairo-1.0;pango-1.0;atk-1.0;cairo;gdk_pixbuf-2.0;gio-2.0;gobject-2.0;glib-2.0;intl;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="debug.mak" />
