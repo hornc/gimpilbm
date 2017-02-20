@@ -103,11 +103,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="debug.mak" />
     <None Include="GimpILBM-Debug.vgdbsettings" />
     <None Include="GimpILBM-Release.vgdbsettings" />
-    <None Include="Makefile" />
-    <None Include="release.mak" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\byterun1.h" />
