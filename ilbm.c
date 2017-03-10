@@ -1166,6 +1166,8 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 			break;
 		case GIMP_RGB_IMAGE:
 			break;
+		case GIMP_GRAY_IMAGE:
+			break;
 		case GIMP_INDEXEDA_IMAGE:
 			alpha = 1;
 		case GIMP_INDEXED_IMAGE:
@@ -1200,7 +1202,7 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 		gint		outNcols = 0;          /* number of colors in cmap */
 
 		/* IMPORTANT: cmap can only be != 0 if the image is neither RGB nor GRAY(!) */
-		if(NULL != cmap)
+		if(cmap != NULL)
 			nPlanes = calcPlanes(ncols);
 		else
 		{
@@ -1324,11 +1326,9 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 			iffInitHeader(&chead, ID_BODY, GUINT32_FROM_BE(0x0BADC0DE));
 			succ = succ && iffWriteHeader(file, &chead);
 			{
-				gint	threshold = (gint) (opaque * ilbmvals.threshold);
-				gint32	tileHeight = gimp_tile_height();
-				guint8	*buffer;
-
-				buffer = g_new(guint8, tileHeight * width * bytepp);
+				const gint	threshold = (gint) (opaque * ilbmvals.threshold);
+				const gint32	tileHeight = gimp_tile_height();
+				guint8 * const buffer = g_new(guint8, tileHeight * width * bytepp);
 				if(DEBUG)
 					printf("Using a buffer of %ld byte.\n", (long) tileHeight * width * bytepp);
 				if(buffer)
@@ -1372,9 +1372,7 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 								
 								for(rgb = 0; rgb < (bytepp - alpha); ++rgb)
 								{
-									gint	bitnr;
-
-									for(bitnr = 0; bitnr < bitppGray; ++bitnr)
+									for(gint bitnr = 0; bitnr < bitppGray; ++bitnr)
 									{
 										extractBits(plane, data + rgb, bitnr, width, bytepp);
 										writePlaneRow(file, plane, BYTEPL(width), compress, packedBuf);
@@ -1393,9 +1391,7 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 							/* indexed or grayscale */
 							while(scanlines--)
 							{
-								gint	bitnr;
-
-								for(bitnr = 0; bitnr < nPlanes; ++bitnr)
+								for(gint bitnr = 0; bitnr < nPlanes; ++bitnr)
 								{
 									/* Write planes 0..x */
 									extractBits(plane, data, bitnr, width, byteppGray + alpha);
@@ -1411,11 +1407,11 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 								data += width;
 							}
 						}
-						gimp_progress_update((double) actTop / (double) height);
+						gimp_progress_update((double) actTop / height);
 					}
 					freePackedBuf(packedBuf);
 
-					bodysize = ftell(file) - bodyLenOff + 4;
+					bodysize = ftell(file) - (bodyLenOff + 4);
 					if(VERBOSE)
 						printf("bodysize: %lu\n", (unsigned long) bodysize);
 
