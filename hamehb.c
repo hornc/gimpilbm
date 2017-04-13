@@ -22,29 +22,29 @@ grayval* reallocEhbCmap(grayval *cmap, gint *p_ncols)
 
 /**** HAM stuff ****/
 
+/* Pre-optimized (?) constant palette for HAM, 16 colors. */
 const guint8 hamPal[16 * byteppRGB] =
 {
-	0x02, 0x02, 0x24, 0x02, 0xFE, 0x44,
-	0xFE, 0x02, 0x59, 0x02, 0x7E, 0x3A,
-	0xFE, 0xFE, 0x49, 0x7E, 0x02, 0x42,
-	0x7E, 0xFE, 0x3E, 0xFE, 0x7E, 0x85,
-	0x7E, 0x7E, 0x77, 0x02, 0x02, 0xFC,
-	0x02, 0xFE, 0xFC, 0xFE, 0x02, 0xFC,
-	0x02, 0x7E, 0xFC, 0xFE, 0xFE, 0xFC,
-	0x7E, 0x02, 0xFC, 0x7E, 0xFE, 0xFC
+	0x02, 0x02, 0x24,  0x02, 0xFE, 0x44,
+	0xFE, 0x02, 0x59,  0x02, 0x7E, 0x3A,
+	0xFE, 0xFE, 0x49,  0x7E, 0x02, 0x42,
+	0x7E, 0xFE, 0x3E,  0xFE, 0x7E, 0x85,
+	0x7E, 0x7E, 0x77,  0x02, 0x02, 0xFC,
+	0x02, 0xFE, 0xFC,  0xFE, 0x02, 0xFC,
+	0x02, 0x7E, 0xFC,  0xFE, 0xFE, 0xFC,
+	0x7E, 0x02, 0xFC,  0x7E, 0xFE, 0xFC
 };
 
 #define	hamPalCols (sizeof hamPal / byteppRGB)
 
+/* Is r, g, or b the smallest difference? */
 static int judgeDiff(int r1, int g1, int b1, int r2, int g2, int b2)
 {
-	/* Is r, g, or b the smallest difference? */
-	int	dr, dg, db;
+	const int dr = abs(r1 - r2);
+	const int dg = abs(g1 - g2);
+	const int db = abs(b1 - b2);
 	int	pts;
 
-	dr = abs(r1 - r2);
-	dg = abs(g1 - g2);
-	db = abs(b1 - b2);
 	/* ok, half its penalty */
 	/* calculations are mhpf.. */
 	if(dr < dg)
@@ -94,7 +94,6 @@ static void lineToHam(guint8 *hamIdxOut, const guint8 *rgbIn, gint bytepp, gint 
 {
 	/* We assume 8bit color depth per channel */
 	int	ar = -1, ag = 0, ab = 0;
-	int	nr, ng, nb;
 	int	crp, cgp = 0, cbp = 0;    /* Make gcc happy */
 
 	g_assert(hamIdxOut != NULL);
@@ -106,9 +105,9 @@ static void lineToHam(guint8 *hamIdxOut, const guint8 *rgbIn, gint bytepp, gint 
 		int constPts;
 		guint8 offs;
 
-		nr = *rgbIn++;
-		ng = *rgbIn++;
-		nb = *rgbIn++;
+		const int nr = *rgbIn++;
+		const int ng = *rgbIn++;
+		const int nb = *rgbIn++;
 		if(ar != -1)
 		{
 			crp = judgeDiff(ar, ag, ab, (nr & 0xF0) * 17 / 16, ag, ab);
@@ -160,10 +159,22 @@ static void lineToHam(guint8 *hamIdxOut, const guint8 *rgbIn, gint bytepp, gint 
 	}
 }
 
+#define	HAM_MODIFY_NONE		0
+#define	HAM_MODIFY_RED		2
+#define	HAM_MODIFY_GREEN	3	/* Hello? */
+#define	HAM_MODIFY_BLUE		1
+
+static grayval hamExpand(grayval data, guint16 depth)
+{
+	if(depth == 4)
+		return (data << 4) | data;
+	return (data << 2) | (data >> 4);
+}
+
 void deHam(grayval *dest, const palidx *src, gint width, guint16 depth, const grayval *cmap, gboolean alpha)
 {
 	grayval cr = 0, cg = 0, cb = 0;
-	guint8 bmask;
+	grayval	* const mods[] = { &cb, &cr, &cg };
 
 	g_assert(dest != NULL);
 	g_assert(src != NULL);
@@ -171,35 +182,25 @@ void deHam(grayval *dest, const palidx *src, gint width, guint16 depth, const gr
 	g_assert(depth >= 3);
 	g_assert(cmap != NULL);
 
-	depth -= 2;                   /* control bits */
-	bmask = (1 << depth) - 1;
-	if(width && (*src >> depth))
-	{
-		/* FIXME: only once */
-		/* Note: ADPro takes last pixel of previous row as default.. */
-		fputs("Warning: HAM line starts with undefined color. Setting to black.\n", stderr);
-	}
+	depth -= 2;
+	const grayval dmask = (1 << depth) - 1;
+
+	/* Note: this treats each scanline on its own, doesn't modify color across scanlines. Not sure what the hardware does. */
 	while(width--)
 	{
-		const guint8	idx = *src++;
+		const grayval	idx = *src++;
+		const grayval	data = idx & dmask;
+		const grayval	control = idx >> depth;
 
-		switch(idx >> depth)
+		if(control == HAM_MODIFY_NONE)	/* Replace all components with color from palette. */
 		{
-		default:
-			cr = cmap[((short) idx) * 3 + 0];
-			cg = cmap[((short) idx) * 3 + 1];
-			cb = cmap[((short) idx) * 3 + 2];
-			break;
-		case 1:
-			cb = hamXbitToGray8(depth, idx & bmask);
-			break;
-		case 2:
-			cr = hamXbitToGray8(depth, idx & bmask);
-			break;
-		case 3:
-			cg = hamXbitToGray8(depth, idx & bmask);
-			break;
+			cr = cmap[3 * data + 0];
+			cg = cmap[3 * data + 1];
+			cb = cmap[3 * data + 2];
 		}
+		else	/* Use 'control' to index into pointer array, and overwrite proper component. */
+			*mods[control - 1] = hamExpand(data, depth);
+		/* Write current color into output RGB buffer. */
 		*dest++ = cr;
 		*dest++ = cg;
 		*dest++ = cb;
