@@ -88,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.14;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.14;D:\Projects\GIMP\babl;D:\Projects\GIMP\gegl\gegl;D:\Projects\GIMP\gegl\gegl\buffer;D:\Projects\GIMP\gegl\gegl\graph;D:\Projects\GIMP\gegl\gegl\process;D:\Projects\GIMP\gegl\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,7 +120,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.14;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.14;D:\Projects\GIMP\babl;D:\Projects\GIMP\gegl\gegl;D:\Projects\GIMP\gegl\gegl\buffer;D:\Projects\GIMP\gegl\gegl\graph;D:\Projects\GIMP\gegl\gegl\process;D:\Projects\GIMP\gegl\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

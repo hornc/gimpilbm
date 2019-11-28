@@ -1171,7 +1171,7 @@ gint saveImage(const gchar *filename, gint32 imageID, gint32 drawableID)
 		case GIMP_INDEXEDA_IMAGE:
 			alpha = 1;
 		case GIMP_INDEXED_IMAGE:
-			cmap = gimp_image_get_cmap(imageID, &ncols);
+			cmap = gimp_image_get_colormap(imageID, &ncols);
 			break;
 		default:
 			fprintf(stderr, "Unsupported drawable type %d\n", dtype);
