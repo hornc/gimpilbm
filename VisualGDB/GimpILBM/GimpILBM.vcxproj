@@ -72,9 +72,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <Toolchain>C:\SysGCC\mingw64</Toolchain>
     <GNUConfigurationType>Debug</GNUConfigurationType>
+    <ToolchainID>com.visualgdb.mingw64</ToolchainID>
+    <ToolchainVersion>9.1.0/8.3/r1</ToolchainVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <Toolchain>C:\SysGCC\mingw64</Toolchain>
+    <ToolchainID>com.visualgdb.mingw64</ToolchainID>
+    <ToolchainVersion>9.1.0/8.3/r1</ToolchainVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
@@ -98,7 +102,7 @@
     <Link>
       <LinkerScript />
       <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
-      <LibrarySearchDirectories>C:/msys64/home/midwa/prefix/lib;C:/msys64/mingw64/lib;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <LibrarySearchDirectories>D:\Projects\GIMP\lib;C:/msys64/home/midwa/prefix/lib;C:/msys64/mingw64/lib;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
       <AdditionalLibraryNames>gimpui-2.0;gimpwidgets-2.0;gimpmodule-2.0;gimp-2.0;gimpmath-2.0;gimpconfig-2.0;gimpcolor-2.0;gimpbase-2.0;gegl-0.3;gegl-npd-0.3;gmodule-2.0 -pthread;json-glib-1.0;gio-2.0;gmodule-2.0 -pthread;babl-0.1;gtk-win32-2.0;gdk-win32-2.0;gdi32;imm32;shell32;ole32 -Wl,-luuid;pangowin32-1.0;pangocairo-1.0;pango-1.0;atk-1.0;cairo;gdk_pixbuf-2.0;gio-2.0;gobject-2.0;glib-2.0;intl;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
     </Link>
   </ItemDefinitionGroup>
