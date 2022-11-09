@@ -28,28 +28,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -88,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.14;D:\Projects\GIMP\babl;D:\Projects\GIMP\gegl\gegl;D:\Projects\GIMP\gegl\gegl\buffer;D:\Projects\GIMP\gegl\gegl\graph;D:\Projects\GIMP\gegl\gegl\process;D:\Projects\GIMP\gegl\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\glib-2.74.1\glib;D:\Projects\GIMP\gtk-gtk-3-24;D:\Projects\GIMP\babl-0.1.96;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\gegl-0.4.8\gegl\buffer;D:\Projects\GIMP\gegl-0.4.8\gegl\graph;D:\Projects\GIMP\gegl-0.4.8\gegl\process;D:\Projects\GIMP\gegl-0.4.8\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,7 +118,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.14;D:\Projects\GIMP\babl;D:\Projects\GIMP\gegl\gegl;D:\Projects\GIMP\gegl\gegl\buffer;D:\Projects\GIMP\gegl\gegl\graph;D:\Projects\GIMP\gegl\gegl\process;D:\Projects\GIMP\gegl\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\glib-2.74.1\glib;D:\Projects\GIMP\gtk-gtk-3-24;D:\Projects\GIMP\babl-0.1.96;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\gegl-0.4.8\gegl\buffer;D:\Projects\GIMP\gegl-0.4.8\gegl\graph;D:\Projects\GIMP\gegl-0.4.8\gegl\process;D:\Projects\GIMP\gegl-0.4.8\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
