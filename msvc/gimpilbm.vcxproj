@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\glib-2.75.0\glib;D:\Projects\GIMP\gtk-gtk-2-24;D:\Projects\GIMP\babl-0.1.96;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\gegl-0.4.8\gegl\buffer;D:\Projects\GIMP\gegl-0.4.8\gegl\graph;D:\Projects\GIMP\gegl-0.4.8\gegl\process;D:\Projects\GIMP\gegl-0.4.8\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Projects\GIMP\glib-2.75.0;D:\Projects\GIMP\glib-2.75.0\glib;D:\Projects\GIMP\gtk-gtk-2-24;D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\babl-0.1.96;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
