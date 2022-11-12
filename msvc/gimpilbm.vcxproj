@@ -86,11 +86,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\glib-2.75.0;D:\Projects\GIMP\glib-2.75.0\glib;D:\Projects\GIMP\gtk-gtk-2-24;D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\babl-0.1.96;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\msys64\mingw64\include;C:\msys64\mingw64\include\glib-2.0;C:\msys64\mingw64\include\gtk-2.0;C:\msys64\mingw64\lib\glib-2.0\include;D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\babl-0.1.96;C:\msys64\mingw64\include\cairo;C:\msys64\mingw64\include\gdk-pixbuf-2.0;C:\msys64\mingw64\lib\gtk-2.0\include;C:\msys64\mingw64\include\atk-1.0;C:\msys64\mingw64\include\pango-1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>D:\Projects\GIMP\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Projects\GIMP\lib;C:/msys64/mingw64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libgimp-2.0-0.lib;libgimpbase-2.0-0.lib;libgimpcolor-2.0-0.lib;libgimpconfig-2.0-0.lib;libgimpmath-2.0-0.lib;libgimpmodule-2.0-0.lib;libgimpthumb-2.0-0.lib;libgimpui-2.0-0.lib;libgimpwidgets-2.0-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -118,13 +118,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\glib-2.75.0\glib;D:\Projects\GIMP\gtk-gtk-2-24;D:\Projects\GIMP\babl-0.1.96;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\gegl-0.4.8\gegl\buffer;D:\Projects\GIMP\gegl-0.4.8\gegl\graph;D:\Projects\GIMP\gegl-0.4.8\gegl\process;D:\Projects\GIMP\gegl-0.4.8\gegl\property-types;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\msys64\mingw64\include;C:\msys64\mingw64\include\glib-2.0;C:\msys64\mingw64\include\gtk-2.0;C:\msys64\mingw64\lib\glib-2.0\include;D:\Projects\GIMP\gimp-2.10.32;D:\Projects\GIMP\gegl-0.4.8\gegl;D:\Projects\GIMP\babl-0.1.96;C:\msys64\mingw64\include\cairo;C:\msys64\mingw64\include\gdk-pixbuf-2.0;C:\msys64\mingw64\lib\gtk-2.0\include;C:\msys64\mingw64\include\atk-1.0;C:\msys64\mingw64\include\pango-1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>D:\Projects\GIMP\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Projects\GIMP\lib;C:/msys64/mingw64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libgimp-2.0-0.lib;libgimpbase-2.0-0.lib;libgimpcolor-2.0-0.lib;libgimpconfig-2.0-0.lib;libgimpmath-2.0-0.lib;libgimpmodule-2.0-0.lib;libgimpthumb-2.0-0.lib;libgimpui-2.0-0.lib;libgimpwidgets-2.0-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
