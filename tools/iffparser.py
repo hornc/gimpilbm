@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Simplistic IFF chunk parser. For debugging my GIMP plug-in.
 #
@@ -14,16 +14,16 @@ class ChunkStream(object):
 		self._data = data
 		self._pos = 0
 		if len(self._data) < 12:
-			print "**Fail, too short string"
+			print("**Fail, too short string")
 		form = self.get_id()
 		if form != "FORM":
-			print "**Fail, not IFF, missing FORM"
+			print("**Fail, not IFF, missing FORM")
 			return
 		flen = self.get_u32()
-		if id0 is not None:	# Verify IFF type.
+		if id0 is not None:  # Verify IFF type.
 			sid0 = self.get_id()
 			if sid0 != id0:
-				print "**Fail, file is '%s', not '%s'" % (sid0, id0)
+				print("**Fail, file is '%s', not '%s'" % (sid0, id0))
 
 	def chunks_left(self):
 		return len(self._data) - self._pos >= 8
@@ -52,6 +52,7 @@ class ChunkStream(object):
 	def skip(self, distance):
 		self._pos += distance
 
+
 class IffAnalyzer(object):
 	def __init__(self, fn):
 		self._filename = fn
@@ -73,27 +74,27 @@ class IffAnalyzer(object):
 						x = ord(body[2][i])
 						if x > 127: x -= 256
 						i += 1
-						print "At %u (%u): %d ->" % (i - 1, nbytes, x),
+						print("At %u (%u): %d ->" % (i - 1, nbytes, x),)
 						if x >= 0 and x <= 127:
-							print "copy(%d)" % (x + 1)
+							print("copy(%d)" % (x + 1))
 							nbytes += x + 1
 							i += x + 1
 						elif x >= -127 and x <= -1:
 							repl = ord(body[2][i])
 							nbytes += -x + 1
 							i += 1
-							print "replicate(0x%02x %d times)" % (repl, -x + 1)
+							print("replicate(0x%02x %d times)" % (repl, -x + 1))
 						else:
-							pass	# -128 does nothing!
+							pass  # -128 does nothing!
 					else:
 						i += bytesperline
 						nbytes += bytesperline
-		print "Consumed %u bytes (out of %u)" % (i, body[1])
+		print("Consumed %u bytes (out of %u)" % (i, body[1]))
 		if i < body[1]:
-			print "BODY has %u extraneous bytes:" % (body[1] - i)
+			print("BODY has %u extraneous bytes:" % (body[1] - i))
 			for j in range(body[1] - i):
-				print i + j, len(body[2])
-				print ", ".join(["0x%02x" % ord(body[2][i + j])])
+				print(i + j, len(body[2]))
+				print(", ".join(["0x%02x" % ord(body[2][i + j])]))
 
 	def analyze(self):
 		if self._data is None:
@@ -102,18 +103,19 @@ class IffAnalyzer(object):
 		bmhd = {}
 		while cs.chunks_left():
 			here = cs.get_chunk()
-			print "%4s %u" % here[:2]
+			print("%4s %u" % here[:2])
 			if here[0] == "ANNO":
-				print "Annotation: \"%s\"" % here[2]
+				print("Annotation: \"%s\"" % here[2])
 			elif here[0] == "BMHD":
 				data = struct.unpack(">HHhhBBBBHBBhh", here[2])
 				fields = ["Width", "Height", "x", "y", "Depth", "Masking", "Compression", None, "TransparentColor", "xAspect", "yAspect", "pageWidth", "pageHeight"]
 				for i in xrange(len(fields)):
 					if fields[i] is not None:
 						bmhd[fields[i]] = data[i]
-						print "%-16s: %s" % (fields[i], data[i])
+						print("%-16s: %s" % (fields[i], data[i]))
 			elif here[0] == "BODY":
 				self.analyze_body(cs, here, bmhd)
+
 
 if __name__ == "__main__":
 	for a in sys.argv[1:]:
