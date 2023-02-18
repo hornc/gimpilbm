@@ -31,7 +31,7 @@ class ChunkStream(object):
 	def get_id(self):
 		rid = struct.unpack(">4s", self._data[self._pos : self._pos + 4])
 		self._pos += 4
-		return rid[0]
+		return rid[0].decode()
 
 	def get_u32(self):
 		ru = struct.unpack(">L", self._data[self._pos : self._pos + 4])
