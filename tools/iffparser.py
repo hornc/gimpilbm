@@ -75,7 +75,7 @@ class IffAnalyzer(object):
                         x = body[2][i]
                         if x > 127: x -= 256
                         i += 1
-                        print("At %u (%u): %d ->" % (i - 1, nbytes, x),)
+                        print("At %u (%u): %d ->" % (i - 1, nbytes, x), end=" ")
                         if x >= 0 and x <= 127:
                             print("copy(%d)" % (x + 1))
                             nbytes += x + 1
