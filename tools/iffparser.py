@@ -64,15 +64,15 @@ class IffAnalyzer(object):
         h = bmhd["Height"]
         compressed = bmhd["Compression"] == 1
         nplanes = bmhd["Depth"]
-        wordsperline = (w + 15) / 16
+        wordsperline = (w + 15) // 16
         bytesperline = 2 * wordsperline
         i = 0
-        for y in xrange(h):
-            for j in xrange(nplanes):
+        for y in range(h):
+            for j in range(nplanes):
                 nbytes = 0
                 while i < body[1] and nbytes < bytesperline:
                     if compressed:
-                        x = ord(body[2][i])
+                        x = body[2][i]
                         if x > 127: x -= 256
                         i += 1
                         print("At %u (%u): %d ->" % (i - 1, nbytes, x),)
@@ -81,7 +81,7 @@ class IffAnalyzer(object):
                             nbytes += x + 1
                             i += x + 1
                         elif x >= -127 and x <= -1:
-                            repl = ord(body[2][i])
+                            repl = body[2][i]
                             nbytes += -x + 1
                             i += 1
                             print("replicate(0x%02x %d times)" % (repl, -x + 1))
@@ -95,7 +95,7 @@ class IffAnalyzer(object):
             print("BODY has %u extraneous bytes:" % (body[1] - i))
             for j in range(body[1] - i):
                 print(i + j, len(body[2]))
-                print(", ".join(["0x%02x" % ord(body[2][i + j])]))
+                print(", ".join(["0x%02x" % body[2][i + j]]))
 
     def analyze(self):
         if self._data is None:
@@ -110,7 +110,7 @@ class IffAnalyzer(object):
             elif here[0] == "BMHD":
                 data = struct.unpack(">HHhhBBBBHBBhh", here[2])
                 fields = ["Width", "Height", "x", "y", "Depth", "Masking", "Compression", None, "TransparentColor", "xAspect", "yAspect", "pageWidth", "pageHeight"]
-                for i in xrange(len(fields)):
+                for i in range(len(fields)):
                     if fields[i] is not None:
                         bmhd[fields[i]] = data[i]
                         print("%-16s: %s" % (fields[i], data[i]))
