@@ -40,6 +40,7 @@ class ChunkStream(object):
 
     def get_data(self, dlen):
         r = self._data[self._pos : self._pos + dlen]
+        dlen += dlen & 1  # Pad odd length chunks to ensure dlen is even
         self._pos += dlen
         return r
 
